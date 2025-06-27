@@ -1,0 +1,4 @@
+[2025-06-05 09:30:00] INFO Scheduled job started
+[2025-06-05 09:32:45] WARN Memory usage at 90%
+[2025-06-05 09:35:50] ERROR Failed to write file from 192.168.0.2
+[2025-06-05 09:40:00] INFO Job completed
