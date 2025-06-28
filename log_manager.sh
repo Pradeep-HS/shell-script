@@ -23,3 +23,15 @@ get_user_input() {
     mkdir -p "$archive_dir"
   fi
 }
+
+search_logs() {
+  echo "Searching logs older than $days_old days in $log_dir..."
+  find "$log_dir" -type f -mtime +"$days_old" | while read file; do
+    echo "Processing $file"
+    if [ "$mode" = "c" ]; then
+      grep -i "$search_pattern" "$file" | wc -l
+    else
+      grep -i "$search_pattern" "$file"
+    fi
+  done
+}
