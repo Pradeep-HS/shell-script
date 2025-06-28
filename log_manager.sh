@@ -53,3 +53,13 @@ archive_logs() {
     echo "No files found to archive."
   fi
 }
+
+get_user_input
+
+search_logs
+
+if [ "$archive_choice" = "yes" ]; then
+  archive_logs
+fi
+
+echo "Log management completed."
