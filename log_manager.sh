@@ -35,3 +35,21 @@ search_logs() {
     fi
   done
 }
+
+archive_logs() {
+  echo "Archiving logs older than $days_old days..."
+  timestamp=$(date +%Y%m%d_%H%M%S)
+  archive_file="$archive_dir/logs_archive_$timestamp.tar.gz"
+
+  files_to_archive=$(find "$log_dir" -type f -mtime +"$days_old")
+
+  if [ -n "$files_to_archive" ]; then
+    tar -czf "$archive_file" $files_to_archive
+    echo "Archive created: $archive_file"
+    tar -tf "$archive_file" > /dev/null && echo "Archive verified"
+    echo "$files_to_archive" | xargs rm -f
+    echo "Old logs deleted after archiving."
+  else
+    echo "No files found to archive."
+  fi
+}
